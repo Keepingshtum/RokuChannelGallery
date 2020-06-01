@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="homescene" extends="Scene">
+<component name="homescene" extends="Scene" initialFocus="category_screen">
   <script type="text/brightscript" uri="pkg:/components/homescene.brs" />
-<children>
-    <Rectangle
-      translation="[950, 530]"
-      width="20"
-      height="20"
-      id="center_square"
-      color="0xFF0000"/>
-    <Label
-      translation="[1720, 980]"
-      id="label_hello"
-      font="font:LargeBoldSystemFont"
-      color="0x000000"
-      text="Hello."/>
-</children>
+  <children>
+    <category_screen
+      id="category_screen"
+      visible="true"
+      translation="[0,0]" />
+  </children>
 </component>

@@ -6,14 +6,20 @@
   <children>
     <!-- color="0x000000" -->
     <Label
-      translation="[75, 150]"
+      translation="[750, 150]"
         id="env"
         font="font:LargeBoldSystemFont"
         text="PICK A CATEGORY:"/>
     <RadioButtonList
-      id="category_list"
-      translation="[100, 200]"
-      itemSize="[400,48]"
-    />
+  id="category_list"
+  translation="[750, 200]"
+  itemSize="[400,48]"
+>
+<ContentNode id = "categories" role = "content" >
+  <ContentNode title = "DRAMA"/>
+  <ContentNode title = "COMEDY"/>
+  <ContentNode title = "HORROR"/>
+</ContentNode>
+</RadioButtonList>
   </children>
 </component>
