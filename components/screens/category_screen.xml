@@ -3,23 +3,28 @@
   extends="Group"
   >
   <script type="text/brightscript" uri="pkg:/components/screens/category_screen.brs" />
+  <interface>
+    <field id="category_selected"
+          type="assocarray"
+          alias="category_list.itemSelected"
+        />
+  </interface>
   <children>
-    <!-- color="0x000000" -->
     <Label
-      translation="[750, 150]"
+      translation="[75, 150]"
         id="env"
         font="font:LargeBoldSystemFont"
         text="PICK A CATEGORY:"/>
     <RadioButtonList
-  id="category_list"
-  translation="[750, 200]"
-  itemSize="[400,48]"
->
-<ContentNode id = "categories" role = "content" >
-  <ContentNode title = "DRAMA"/>
-  <ContentNode title = "COMEDY"/>
-  <ContentNode title = "HORROR"/>
-</ContentNode>
-</RadioButtonList>
+      id="category_list"
+      translation="[100, 200]"
+      itemSize="[400,48]"
+    >
+    <ContentNode id = "categories" role = "content" >
+      <category_node title = "DRAMA" feed_url="http://e118d77ecf93.ngrok.io/roku_lessons/drama.json"/>
+      <category_node title = "COMEDY" feed_url="http://e118d77ecf93.ngrok.io/roku_lessons/comedy.json"/>
+      <category_node title = "HORROR" feed_url="http://e118d77ecf93.ngrok.io/roku_lessons/horror.json"/>
+    </ContentNode>
+  </RadioButtonList>
   </children>
 </component>

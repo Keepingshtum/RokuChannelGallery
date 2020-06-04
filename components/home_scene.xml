@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="homescene" extends="Scene" initialFocus="category_screen">
-  <script type="text/brightscript" uri="pkg:/components/homescene.brs" />
+<component name="home_scene" extends="Scene" initialFocus="category_screen">
+  <script type="text/brightscript" uri="pkg:/components/home_scene.brs" />
   <children>
     <category_screen
       id="category_screen"
