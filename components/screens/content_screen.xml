@@ -6,6 +6,10 @@
         type="assocarray"
         onChange="onFeedChanged"
         />
+        <field id="content_selected"
+        type="assocarray"
+        alias="content_grid.itemSelected"
+    />
     </interface>
     <children>
         <Label
@@ -24,5 +28,6 @@
         numColumns="3"
         numRows="4"
         />
+     
     </children>
 </component>
