@@ -12,7 +12,27 @@ function init()
 	m.details_screen.observeField("play_button_pressed", "onPlayButtonPressed")
 
 	m.category_screen.setFocus(true)
+	loadConfig()
 end function
+
+'load config from config.json- populates feed
+sub loadConfig()
+    m.config_task = createObject("roSGNode", "load_config_task")
+    m.config_task.observeField("error", "onConfigError")
+    m.config_task.observeField("filedata", "onConfigResponse")
+    m.config_task.filepath = "resources/config.json"
+    m.config_task.control="RUN"
+end sub
+'if config is bad
+sub onConfigError(obj)
+	showErrorDialog(obj.getData())
+end sub
+'handle config response
+sub onConfigResponse(obj)
+	params = {config:obj.getData()}
+	m.category_screen.callFunc("updateConfig",params)
+	m.content_screen.callFunc("updateConfig",params)
+end sub
 
 sub initializeVideoPlayer()
 	m.videoplayer.EnableCookies()
@@ -26,7 +46,7 @@ end sub
 sub onPlayerPositionChanged(obj)
 	? "Player Position: ", obj.getData()
 end sub
-
+'Handle user backing out or video ending
 sub onPlayerStateChanged(obj)
   state = obj.getData()
 	? "onPlayerStateChanged: ";state
@@ -42,7 +62,7 @@ sub closeVideo()
 	m.videoplayer.visible=false
 	m.details_screen.visible=true
 end sub
-
+'Handle selected content and info
 sub onContentSelected(obj)
     selected_index = obj.getData()
     m.selected_media = m.content_screen.findNode("content_grid").content.getChild(selected_index)
@@ -50,7 +70,7 @@ sub onContentSelected(obj)
     m.content_screen.visible = false
     m.details_screen.visible = true
 end sub
-
+'Handle Play Video button
 sub onPlayButtonPressed(obj)
 	m.details_screen.visible = false
 	m.videoplayer.visible = true
@@ -70,26 +90,26 @@ sub onCategorySelected(obj)
 end sub
 
 sub loadFeed(url)
-    ' create a task
-    m.feed_task = createObject("roSGNode", "load_feed_task")
-    m.feed_task.observeField("response", "onFeedResponse")
-    m.feed_task.url = url
-    'tasks have a control field with specific values
-    m.feed_task.control = "RUN"
+	m.feed_task = createObject("roSGNode", "load_feed_task")
+	m.feed_task.observeField("response", "onFeedResponse")
+	m.feed_task.observeField("error", "onFeedError")
+	m.feed_task.url = url
+	m.feed_task.control = "RUN"
 end sub
 
+sub onFeedError(obj)
+	showErrorDialog(obj.getData())
+end sub
+'Handle JSON feed
 sub onFeedResponse(obj)
 	response = obj.getData()
-	'turn the JSON string into an Associative Array
 	data = parseJSON(response)
-	if data <> Invalid and data.items <> invalid
-        'hide the category screen and show content screen
-        m.category_screen.visible = false
-        m.content_screen.visible = true
-		' assign data to content screen
+	if data <> invalid and data.items <> invalid
+		m.category_screen.visible = false
+		m.content_screen.visible = true
 		m.content_screen.feed_data = data
 	else
-		? "FEED RESPONSE IS EMPTY!"
+		showErrorDialog("Feed data malformed.")
 	end if
 end sub
 

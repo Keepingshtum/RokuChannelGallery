@@ -5,11 +5,13 @@
   <script type="text/brightscript" uri="pkg:/components/screens/category_screen.brs" />
   <interface>
     <field id="category_selected"
-          type="assocarray"
-          alias="category_list.itemSelected"
+		    type="assocarray"
+		    alias="category_list.itemSelected"
         />
+    <function name="updateConfig" />
   </interface>
   <children>
+    <!-- color="0x000000" -->
     <Label
       translation="[75, 150]"
         id="env"
@@ -20,11 +22,6 @@
       translation="[100, 200]"
       itemSize="[400,48]"
     >
-    <ContentNode id = "categories" role = "content" >
-      <category_node title = "DRAMA" feed_url="http://fd38b4a9fdef.ngrok.io/roku_lessons/drama.json"/>
-      <category_node title = "COMEDY" feed_url="http://fd38b4a9fdef.ngrok.io/roku_lessons/comedy.json"/>
-      <category_node title = "HORROR" feed_url="http://fd38b4a9fdef.ngrok.io/roku_lessons/horror.json"/>
-    </ContentNode>
   </RadioButtonList>
   </children>
 </component>

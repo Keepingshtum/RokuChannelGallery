@@ -3,13 +3,14 @@
     <script type="text/brightscript" uri="pkg:/components/screens/content_screen.brs" />
     <interface>
         <field id="feed_data"
-        type="assocarray"
-        onChange="onFeedChanged"
-        />
+            type="assocarray"
+            onChange="onFeedChanged"
+            />
         <field id="content_selected"
-        type="assocarray"
-        alias="content_grid.itemSelected"
-    />
+            type="assocarray"
+            alias="content_grid.itemSelected"
+            />
+        <function name="updateConfig" />
     </interface>
     <children>
         <Label
