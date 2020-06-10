@@ -37,3 +37,7 @@ sub main()
 		end if
 	end while
 end sub
+
+function GetSceneName() as String
+    return "home_scene"
+end function
